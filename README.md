@@ -14,3 +14,6 @@ Controls the animation of the piston.
 ##### plateController.cs
 Handles the placement of the plate onto the feeder. 
 Any warnings are also handled by this file.
+
+#### .meta files
+These files are used by Unity to ensure it is using the correct script. As such they can be ignored by us.
