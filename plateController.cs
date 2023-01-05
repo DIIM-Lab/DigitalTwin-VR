@@ -15,7 +15,7 @@ public class plateController : MonoBehaviour
     Vector3 homePos;
     Vector3 homeForward;
     Quaternion homeRot;
-    float rotX, rotY;
+    float rotX, rotY, rotZ;
 
     // Set all necessasry game objects to their variables
     void Start()
@@ -27,6 +27,7 @@ public class plateController : MonoBehaviour
         homeForward = plate.transform.right;
         rotX = plate.transform.localEulerAngles.x;
         rotY = plate.transform.localEulerAngles.y;
+        rotZ = plate.transform.localEulerAngles.z;
     }
 
     // Update is called once per frame
@@ -74,7 +75,7 @@ public class plateController : MonoBehaviour
             {
                 yield return new WaitForSecondsRealtime(3);
                 plate.transform.position = homePos;
-                plate.transform.localEulerAngles = new Vector3(rotX, rotY, plate.transform.localEulerAngles.z);
+                plate.transform.localEulerAngles = new Vector3(rotX, plate.transform.localEulerAngles.y, rotZ);
                 warn.enabled = true;
                 yield return new WaitForSecondsRealtime(1.5f);
 

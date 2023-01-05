@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace WebXR.Interactions
+namespace WebXRS.Interactions
 {
     [RequireComponent(typeof(Rigidbody))]
     public class MouseDragObject : MonoBehaviour
@@ -14,6 +14,8 @@ namespace WebXR.Interactions
         private Vector3 m_offset;
         private Vector3 m_currentVelocity;
         private Vector3 m_previousPos;
+
+        
 
         void Awake()
         {

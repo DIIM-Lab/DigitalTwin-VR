@@ -2,10 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 //using Firebase.Firestore;
-using FirebaseWebGL.Examples.Utils;
-using FirebaseWebGL.Scripts.FirebaseBridge;
+//using FirebaseWebGL.Examples.Utils;
+//using FirebaseWebGL.Scripts.FirebaseBridge;
 using TMPro;
-using FirebaseWebGL.Scripts.Objects;
+//using FirebaseWebGL.Scripts.Objects;
 using System.Collections.Generic;
 
 
@@ -30,6 +30,7 @@ public class Piston : MonoBehaviour
     InputField delField;
     Button pButton;
     public Text txt;
+    public bool pistonActivation = false;
 
     IEnumerator waitDelay()
     {
@@ -97,7 +98,7 @@ public class Piston : MonoBehaviour
 
     void onColChange(string output)
     {
-        FirebaseFirestore.GetDocument("pistons", "IDBGYt7Ctv7qPG5YbBCm", gameObject.name, "documentData", "errorFunction");
+        //FirebaseFirestore.GetDocument("pistons", "IDBGYt7Ctv7qPG5YbBCm", gameObject.name, "documentData", "errorFunction");
 
     }
 
@@ -106,15 +107,15 @@ public class Piston : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         //animator.SetBool("Start", false);
-        gameObject.GetComponent<Piston>().delay = 5.0f;
-        delField = GameObject.Find("delayInput").GetComponent<InputField>();
-        pButton = GameObject.Find("pistonButton").GetComponent<Button>();
-        pButton.onClick.AddListener(onButtonClick);
+        //gameObject.GetComponent<Piston>().delay = 5.0f;
+        //delField = GameObject.Find("delayInput").GetComponent<InputField>();
+        //pButton = GameObject.Find("pistonButton").GetComponent<Button>();
+        //pButton.onClick.AddListener(onButtonClick);
         var se = new InputField.SubmitEvent();
-        delField.onEndEdit.AddListener(changeValue);
-        delField.SetTextWithoutNotify(delay.ToString());
+        //delField.onEndEdit.AddListener(changeValue);
+        //delField.SetTextWithoutNotify(delay.ToString());
 
-        FirebaseFirestore.ListenForCollectionChange("pistons", false, gameObject.name, "onColChange", "errorFunction");
+        //FirebaseFirestore.ListenForCollectionChange("pistons", false, gameObject.name, "onColChange", "errorFunction");
 
 
 
@@ -153,7 +154,24 @@ public class Piston : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        delField.ForceLabelUpdate();
+        //delField.ForceLabelUpdate();
+
+        if (pistonActivation)
+        {
+            //Debug.Log("Going down");
+
+            animator.SetBool("Rev", false);
+
+            animator.SetBool("Start", true);
+
+        } else if (!pistonActivation)
+        {
+            //Debug.Log("Going up");
+
+            animator.SetBool("Rev", true);
+
+            animator.SetBool("Start", false);
+        }
 
     }
 
